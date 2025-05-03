@@ -1,0 +1,79 @@
+% Diese Konfiguration ist nur mit pdfLaTeX-Compiler kompatibel.
+
+% Dokumentklasse: 'article' ist ideal für Berichte und Facharbeiten.
+% 11pt setzt die Schriftgrösse, A4 das Papierformat.
+\documentclass[11pt,a4paper]{article}
+
+% -------------------------------
+%       SCHRIFT UND SPRACHE
+% -------------------------------
+
+% Eingabe in UTF-8 (damit ä, ö, ü direkt im Quelltext verwendet werden können)
+\usepackage[utf8]{inputenc}
+
+% T1-Font-Encoding verbessert Silbentrennung bei Umlauten
+\usepackage[T1]{fontenc}
+
+% Spracheinstellungen für Deutsch (inkl. Silbentrennung, Anführungszeichen etc.)
+\usepackage[ngerman]{babel}
+
+% Helvetica-Schrift laden (Arial ist mit pdfLaTeX nicht möglich)
+% 'scaled' passt die Grösse automatisch an
+\usepackage[scaled]{helvet}
+\renewcommand{\familydefault}{\sfdefault} % Sans Serif (hier Helvetica) als Standardschrift
+
+% -------------------------------
+%       ZEILENABSTAND UND FORMAT
+% -------------------------------
+
+% Zeilenabstand auf 1 setzen (erlaubter Bereich: 1.0–1.15)
+\usepackage{setspace}
+\setstretch{1}
+
+% Keine Einrückung bei neuen Absätzen
+\setlength{\parindent}{0pt}
+
+% Linksbündiger Flattersatz, aber Silbentrennung bleibt aktiv (im Gegensatz zu flushleft)
+\raggedright
+
+% -------------------------------
+%           SEITENRÄNDER
+% -------------------------------
+
+% Seitenränder: oben/unten/rechts = 2.5 cm, links = 3 cm für Spiralbindung
+\usepackage{geometry}
+\geometry{
+  top=2.5cm,
+  bottom=2.5cm,
+  left=3cm,
+  right=2.5cm
+}
+
+% -------------------------------
+%   AUTOMATISCHER KAPITELUMBRUCH
+% -------------------------------
+
+% Verhindert, dass ein Kapitel beginnt, wenn nicht genug Platz für 4–5 Zeilen vorhanden ist.
+% Verwendet werden kann z. B. \needspace{5\baselineskip} vor jeder Kapitelüberschrift.
+\usepackage{needspace}
+
+\usepackage{enumitem} % im Vorspann
+
+% -------------------------------
+%         LISTENKONTROLLE
+% -------------------------------
+
+% Volle Kontrolle über Aufzählungen (z. B. Bullet-Symbol, Einrückung, Abstände)
+\usepackage{enumitem}
+
+
+
+% -------------------------------
+%          DOKUMENTINHALT
+% -------------------------------
+
+\begin{document}
+
+
+
+\end{document}
