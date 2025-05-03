@@ -70,7 +70,7 @@
 \definecolor{pagestylegray}{HTML}{808080}
 
 % Schriftgrösse für Kopf-/Fusszeile
-\newcommand{\pagestylefontsize}{11}
+\newcommand{\pageheaderfooterfontsize}{11}
 
 % Kopfzeile (ohne Linie = 0pt / mit Linie = bspw. 0.4pt)
 \newcommand{\headrulethickness}{0.4pt}
@@ -107,22 +107,22 @@
 
 % Kopfzeile links: \titletext
 \fancyhead[L]{%
-  \textcolor{pagestylegray}{\fontsize{\pagestylefontsize}{1.2\pagestylefontsize}\selectfont \titletext}
+  \textcolor{pagestylegray}{\fontsize{\pageheaderfooterfontsize}{1.2\pageheaderfooterfontsize}\selectfont \titletext}
 }
 
 % Kopfzeile rechts: \classinfo
 \fancyhead[R]{%
-  \textcolor{pagestylegray}{\fontsize{\pagestylefontsize}{1.2\pagestylefontsize}\selectfont \classinfo}
+  \textcolor{pagestylegray}{\fontsize{\pageheaderfooterfontsize}{1.2\pageheaderfooterfontsize}\selectfont \classinfo}
 }
 
 % Fusszeile links: \authorname
 \fancyfoot[L]{%
-  \textcolor{pagestylegray}{\fontsize{\pagestylefontsize}{1.2\pagestylefontsize}\selectfont \authorname}
+  \textcolor{pagestylegray}{\fontsize{\pageheaderfooterfontsize}{1.2\pageheaderfooterfontsize}\selectfont \authorname}
 }
 
 % Fusszeile rechts: Seitenzahl / Gesamtseitenzahl
 \fancyfoot[R]{%
-  \textcolor{pagestylegray}{\fontsize{\pagestylefontsize}{1.2\pagestylefontsize}\selectfont Seite \thepage{} / \pageref{LastPage}}
+  \textcolor{pagestylegray}{\fontsize{\pageheaderfooterfontsize}{1.2\pageheaderfooterfontsize}\selectfont Seite \thepage{} / \pageref{LastPage}}
 }
 
 % Für Gesamtseitenzahl:
