@@ -66,6 +66,18 @@
 \newcommand{\frontauthorfontsize}{11}
 \newcommand{\frontmetafontsize}{10}
 
+% Farbe für Kopf- und Fusszeile
+\definecolor{pagestylegray}{HTML}{808080}
+
+% Schriftgrösse für Kopf-/Fusszeile
+\newcommand{\pagestylefontsize}{11}
+
+% Kopfzeile (ohne Linie = 0pt / mit Linie = bspw. 0.4pt)
+\newcommand{\headrulethickness}{0.4pt}
+
+% Fusszeile (ohne Linie = 0pt / mit Linie = bspw. 0.4pt)
+\newcommand{\footrulethickness}{0.4pt}
+
 % ---------------------------------------------------
 %     KONFIGURATION FÜR FORTGESCHRITTENE
 % ---------------------------------------------------
@@ -82,6 +94,39 @@
 \usepackage{eso-pic}
 \usepackage{atbegshi}
 \DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
+
+% Kopf- und Fusszeilen
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% Layout setzen: erst alles leeren
+\fancyhf{}
+
+\renewcommand{\headrulewidth}{\headrulethickness}
+\renewcommand{\footrulewidth}{\footrulethickness}
+
+% Kopfzeile links: \titletext
+\fancyhead[L]{%
+  \textcolor{pagestylegray}{\fontsize{\pagestylefontsize}{1.2\pagestylefontsize}\selectfont \titletext}
+}
+
+% Kopfzeile rechts: \classinfo
+\fancyhead[R]{%
+  \textcolor{pagestylegray}{\fontsize{\pagestylefontsize}{1.2\pagestylefontsize}\selectfont \classinfo}
+}
+
+% Fusszeile links: \authorname
+\fancyfoot[L]{%
+  \textcolor{pagestylegray}{\fontsize{\pagestylefontsize}{1.2\pagestylefontsize}\selectfont \authorname}
+}
+
+% Fusszeile rechts: Seitenzahl / Gesamtseitenzahl
+\fancyfoot[R]{%
+  \textcolor{pagestylegray}{\fontsize{\pagestylefontsize}{1.2\pagestylefontsize}\selectfont Seite \thepage{} / \pageref{LastPage}}
+}
+
+% Für Gesamtseitenzahl:
+\usepackage{lastpage}
 
 % ---------------------------------------------------
 %        TITELSEITEN-LAYOUT UND BEFEHLE
@@ -181,6 +226,12 @@
     }%
   \endgroup
 \end{titlepage}
+
+\cleardoublepage
+\tableofcontents
+
+% Jetzt beginnt dein Haupttext:
+\cleardoublepage
 
 
 
