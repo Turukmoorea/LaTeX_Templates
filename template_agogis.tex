@@ -1,12 +1,23 @@
 % Diese Konfiguration ist nur mit pdfLaTeX-Compiler kompatibel.
 
+% ---------------------------------------------------
+%     DOKUMENTMETADATEN (anpassbar durch Nutzer:in)
+% ---------------------------------------------------
+
+\newcommand{\titletext}{Exemplarische Prozessgestaltung}
+\newcommand{\subtitletext}{Kommunikationsentwicklung}
+\newcommand{\authorname}{Michèle Bucher}
+\newcommand{\classinfo}{Klasse QR 24.1}
+\newcommand{\instituteinfo}{Agogis}
+\newcommand{\studyprogram}{2025}
+
+% ---------------------------------------------------
+%         BASISKONFIGURATION (für Nutzer:innen)
+% ---------------------------------------------------
+
 % Dokumentklasse: 'article' ist ideal für Berichte und Facharbeiten.
 % 11pt setzt die Schriftgrösse, A4 das Papierformat.
 \documentclass[11pt,a4paper]{article}
-
-% -------------------------------
-%       SCHRIFT UND SPRACHE
-% -------------------------------
 
 % Eingabe in UTF-8 (damit ä, ö, ü direkt im Quelltext verwendet werden können)
 \usepackage[utf8]{inputenc}
@@ -17,14 +28,9 @@
 % Spracheinstellungen für Deutsch (inkl. Silbentrennung, Anführungszeichen etc.)
 \usepackage[ngerman]{babel}
 
-% Helvetica-Schrift laden (Arial ist mit pdfLaTeX nicht möglich)
-% 'scaled' passt die Grösse automatisch an
+% Schriftart: Helvetica (Arial ist mit pdfLaTeX nicht möglich)
 \usepackage[scaled]{helvet}
 \renewcommand{\familydefault}{\sfdefault} % Sans Serif (hier Helvetica) als Standardschrift
-
-% -------------------------------
-%       ZEILENABSTAND UND FORMAT
-% -------------------------------
 
 % Zeilenabstand auf 1 setzen (erlaubter Bereich: 1.0–1.15)
 \usepackage{setspace}
@@ -33,12 +39,8 @@
 % Keine Einrückung bei neuen Absätzen
 \setlength{\parindent}{0pt}
 
-% Linksbündiger Flattersatz, aber Silbentrennung bleibt aktiv (im Gegensatz zu flushleft)
+% Linksbündiger Flattersatz, aber mit aktiver Silbentrennung
 \raggedright
-
-% -------------------------------
-%           SEITENRÄNDER
-% -------------------------------
 
 % Seitenränder: oben/unten/rechts = 2.5 cm, links = 3 cm für Spiralbindung
 \usepackage{geometry}
@@ -49,23 +51,94 @@
   right=2.5cm
 }
 
-% -------------------------------
-%   AUTOMATISCHER KAPITELUMBRUCH
-% -------------------------------
+% Ermöglicht benutzerdefinierte Schriftfarben
+\usepackage{xcolor}
 
-% Verhindert, dass ein Kapitel beginnt, wenn nicht genug Platz für 4–5 Zeilen vorhanden ist.
-% Verwendet werden kann z. B. \needspace{5\baselineskip} vor jeder Kapitelüberschrift.
+% Farbcodes für Titelseite (bei Bedarf anpassen)
+\definecolor{fronttitlecolor}{HTML}{0e2841}
+\definecolor{frontsubtitlecolor}{HTML}{319a8e}
+\definecolor{frontauthorcolor}{HTML}{808080}
+\definecolor{frontmetacolor}{HTML}{e97132}
+
+% Schriftgrössen für Titelseite (bei Bedarf anpassen)
+\newcommand{\fronttitlefontsize}{27}
+\newcommand{\frontsubtitlefontsize}{18}
+\newcommand{\frontauthorfontsize}{11}
+\newcommand{\frontmetafontsize}{10}
+
+% ---------------------------------------------------
+%     KONFIGURATION FÜR FORTGESCHRITTENE
+% ---------------------------------------------------
+
+% Automatischer Seitenumbruch: Kapitel beginnt nur, wenn genug Platz
 \usepackage{needspace}
 
-\usepackage{enumitem} % im Vorspann
-
-% -------------------------------
-%         LISTENKONTROLLE
-% -------------------------------
-
-% Volle Kontrolle über Aufzählungen (z. B. Bullet-Symbol, Einrückung, Abstände)
+% Kontrolle über Listen (Abstände, Symbole etc.)
 \usepackage{enumitem}
 
+% Bilder & Hintergrundbilder
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{atbegshi}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
+
+% ---------------------------------------------------
+%        TITELSEITEN-LAYOUT UND BEFEHLE
+% ---------------------------------------------------
+
+% Titelbild zentriert einfügen: \frontpageimg[<scale>]{x,y}{bild}
+\newcommand{\frontpageimg}[3][1]{%
+  \AddToShipoutPicture*{%
+    \put(#2){%
+      \makebox(0,0){%
+        \includegraphics[scale=#1]{#3}%
+      }%
+    }%
+  }%
+}
+
+% Titel
+\newcommand{\fronttitle}{%
+  \textcolor{fronttitlecolor}{%
+    \fontsize{\fronttitlefontsize}{1.2\fronttitlefontsize}\selectfont \textbf{\titletext}%
+  }%
+}
+
+% Untertitel
+\newcommand{\frontsubtitle}{%
+  \textcolor{frontsubtitlecolor}{%
+    \fontsize{\frontsubtitlefontsize}{1.2\frontsubtitlefontsize}\selectfont \subtitletext%
+  }%
+}
+
+% Autor:in
+\newcommand{\frontauthor}{%
+  \textcolor{frontauthorcolor}{%
+    \fontsize{\frontauthorfontsize}{1.2\frontauthorfontsize}\selectfont \authorname%
+  }%
+}
+
+% Institut
+\newcommand{\frontinstituteinfo}{%
+  \textcolor{frontmetacolor}{%
+    \fontsize{\frontmetafontsize}{1.2\frontmetafontsize}\selectfont \instituteinfo%
+  }%
+}
+
+% Klasse
+\newcommand{\frontclassinfo}{%
+  \textcolor{frontmetacolor}{%
+    \fontsize{\frontmetafontsize}{1.2\frontmetafontsize}\selectfont \classinfo%
+  }%
+}
+
+% Studienprogramm / Jahr
+\newcommand{\frontstudyprogram}{%
+  \textcolor{frontmetacolor}{%
+    \fontsize{\frontmetafontsize}{1.2\frontmetafontsize}\selectfont \studyprogram%
+  }%
+}
 
 
 % -------------------------------
@@ -73,6 +146,41 @@
 % -------------------------------
 
 \begin{document}
+\begin{titlepage}
+  % Hintergrundbild (zentriert, skaliert)
+  \frontpageimg[0.75]{300,427}{titelbild_michele_epg.png}  % [scale]{links,oben}{bild}
+
+  % Textblock
+  \begingroup
+    \vspace*{18cm}
+    \begin{flushleft}
+      \textcolor{fronttitlecolor}{%
+        \fontsize{\fronttitlefontsize}{1.2\fronttitlefontsize}\selectfont \textbf{\titletext}}\\[0.5cm]
+
+      \textcolor{frontsubtitlecolor}{%
+        \fontsize{\frontsubtitlefontsize}{1.2\frontsubtitlefontsize}\selectfont \MakeUppercase{\subtitletext}}\\[0.2cm]
+
+      \textcolor{frontauthorcolor}{%
+        \fontsize{\frontauthorfontsize}{1.2\frontauthorfontsize}\selectfont \MakeUppercase{\authorname}}%
+    \end{flushleft}
+
+    \vspace{2.5cm}
+
+    \noindent
+    \makebox[\textwidth]{%
+      \begin{minipage}[t]{0.5\textwidth}
+        \raggedright
+        \textcolor{frontmetacolor}{%
+          \fontsize{\frontmetafontsize}{1.2\frontmetafontsize}\selectfont \instituteinfo, \classinfo}%
+      \end{minipage}%
+      \begin{minipage}[t]{0.5\textwidth}
+        \raggedleft
+        \textcolor{frontmetacolor}{%
+          \fontsize{\frontmetafontsize}{1.2\frontmetafontsize}\selectfont \studyprogram}%
+      \end{minipage}%
+    }%
+  \endgroup
+\end{titlepage}
 
 
 
