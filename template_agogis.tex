@@ -4,12 +4,12 @@
 %     DOKUMENTMETADATEN (anpassbar durch Nutzer:in)
 % ---------------------------------------------------
 
-\newcommand{\titletext}{Exemplarische Prozessgestaltung}
-\newcommand{\subtitletext}{Kommunikationsentwicklung}
-\newcommand{\authorname}{Michèle Bucher}
-\newcommand{\classinfo}{Klasse QR 24.1}
-\newcommand{\instituteinfo}{Agogis}
-\newcommand{\studyprogram}{2025}
+\newcommand{\titletext}{Anleitung zur Nutzung der LaTeX-Vorlage}
+\newcommand{\subtitletext}{Erstellung von Facharbeiten gemäss Agogis-Richtlinien}
+\newcommand{\authorname}{Turukmoorea – \protect\href{https://github.com/Turukmoorea}{github.com/Turukmoorea}}
+\newcommand{\classinfo}{HF SP Anleitung}
+\newcommand{\instituteinfo}{Agogis – nicht offiziell}
+\newcommand{\studyprogram}{Version 2025}
 
 % ---------------------------------------------------
 %         BASISKONFIGURATION (für Nutzer:innen)
@@ -39,8 +39,14 @@
 % Keine Einrückung bei neuen Absätzen
 \setlength{\parindent}{0pt}
 
+% Kleiner Abstand zwischen Absätzen
+\setlength{\parskip}{0.5em}
+
 % Linksbündiger Flattersatz, aber mit aktiver Silbentrennung
 \raggedright
+
+% Basiswert für Mindestzeilen bei Kapitelbeginn (z. B. für \section)
+\newcommand{\minspaceforsection}{5\baselineskip}
 
 % Seitenränder: oben/unten/rechts = 2.5 cm, links = 3 cm für Spiralbindung
 \usepackage{geometry}
@@ -61,8 +67,8 @@
 \definecolor{frontmetacolor}{HTML}{e97132}
 
 % Schriftgrössen für Titelseite (bei Bedarf anpassen)
-\newcommand{\fronttitlefontsize}{27}
-\newcommand{\frontsubtitlefontsize}{18}
+\newcommand{\fronttitlefontsize}{20}
+\newcommand{\frontsubtitlefontsize}{14}
 \newcommand{\frontauthorfontsize}{11}
 \newcommand{\frontmetafontsize}{10}
 
@@ -82,8 +88,15 @@
 %     KONFIGURATION FÜR FORTGESCHRITTENE
 % ---------------------------------------------------
 
+% Automatisch Links generieren
+\usepackage{hyperref}
+
 % Automatischer Seitenumbruch: Kapitel beginnt nur, wenn genug Platz
 \usepackage{needspace}
+\usepackage{etoolbox} % erlaubt Patchen von bestehenden Befehlen
+
+% Vor jeder \section automatisch Platz für mindestens \minspaceforsection reservieren
+\pretocmd{\section}{\Needspace{\minspaceforsection}}{}{}
 
 % Kontrolle über Listen (Abstände, Symbole etc.)
 \usepackage{enumitem}
@@ -127,6 +140,24 @@
 
 % Für Gesamtseitenzahl:
 \usepackage{lastpage}
+
+% Quellenverzeichnis nach APA
+\usepackage[backend=biber, style=apa, sorting=nyt]{biblatex}
+\addbibresource{quellenverzeichnis.bib} % deine .bib-Datei mit den Quellen
+
+% Automatische Ueberschrift in \listoffigures und \listoftables deaktivieren
+\usepackage{etoolbox}
+
+\makeatletter
+\renewcommand{\listoffigures}{%
+  \vspace{-0.5\baselineskip} % Reduziert Leerraum vor dem Verzeichnis
+  \@starttoc{lof}%
+}
+\renewcommand{\listoftables}{%
+  \vspace{-0.5\baselineskip}
+  \@starttoc{lot}%
+}
+\makeatother
 
 % ---------------------------------------------------
 %        TITELSEITEN-LAYOUT UND BEFEHLE
@@ -187,7 +218,7 @@
 
 
 % -------------------------------
-%          DOKUMENTINHALT
+% Titelblatt und Inhaltsverzeichnis
 % -------------------------------
 
 \begin{document}
@@ -230,9 +261,54 @@
 \cleardoublepage
 \tableofcontents
 
-% Jetzt beginnt dein Haupttext:
 \cleardoublepage
+% -------------------------------
+%     Inhalt des Dokumentes
+% -------------------------------
 
 
+
+% -------------------------------
+%             Anhang
+% -------------------------------
+\cleardoublepage
+\section{Anhang}
+
+\begin{itemize}
+  \item 
+\end{itemize}
+
+% -------------------------------
+%      Quellenverzeichnis
+% -------------------------------
+\cleardoublepage
+\section{Quellenverzeichnis}
+
+\printbibliography[heading=none]
+
+\vspace{2cm}
+
+\subsection*{Einsatz von KI-basierten Tools}
+\begin{itemize}
+  \item ChatGPT (OpenAI, Version 4, Zugriff: 03.05.2025): zur Ideenstrukturierung und sprachlichen Überarbeitung.
+  \item DeepL (Zugriff: 03.05.2025): zur Übersetzung von Begriffen.
+  \item Quillbot: nicht verwendet.
+\end{itemize}
+
+% -------------------------------
+%      Abbildungsverzeichnis
+% -------------------------------
+\cleardoublepage
+\section{Abbildungsverzeichnis}
+\addcontentsline{toc}{section}{Abbildungsverzeichnis}
+\listoffigures
+
+% -------------------------------
+%      Tabellenverzeichnis
+% -------------------------------
+\cleardoublepage
+\section{Tabellenverzeichnis}
+\addcontentsline{toc}{section}{Tabellenverzeichnis}
+\listoftables
 
 \end{document}
