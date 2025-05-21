@@ -32,7 +32,3 @@ Dieses Repository verwendet ein standardisiertes Schema zur Benennung der Vorlag
 | `agogis_facharbeit_coverimg_apa_pdflatex_v25`                | Agogis-Facharbeit mit Bilddeckblatt, APA, pdfLaTeX |
 | `agogis_facharbeit_textcover_apa_pdflatex_v25.1`             | Agogis, textbasiertes Deckblatt                    |
 | `ipa_abschlussarbeit_hermes5_textcover_apa_pdflatex_v25.2.1` | IPA, HERMES 5 Stil, textzentriertes Deckblatt      |
-
----
-
-> Diese Struktur unterstützt eine saubere Organisation, automatisierte Verarbeitung und einfache Navigation in komplexen LaTeX-Projekten.
