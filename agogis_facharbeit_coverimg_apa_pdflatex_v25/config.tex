@@ -1,16 +1,3 @@
-% Diese Konfiguration ist nur mit pdfLaTeX-Compiler kompatibel.
-
-% ---------------------------------------------------
-%     DOKUMENTMETADATEN (anpassbar durch Nutzer:in)
-% ---------------------------------------------------
-
-\newcommand{\titletext}{Anleitung zur Nutzung der LaTeX-Vorlage}
-\newcommand{\subtitletext}{Erstellung von Facharbeiten gemäss Agogis-Richtlinien}
-\newcommand{\authorname}{Turukmoorea – \protect\href{https://github.com/Turukmoorea}{github.com/Turukmoorea}}
-\newcommand{\classinfo}{HF SP Anleitung}
-\newcommand{\instituteinfo}{Agogis – nicht offiziell}
-\newcommand{\studyprogram}{Version 2025}
-
 % ---------------------------------------------------
 %         BASISKONFIGURATION (für Nutzer:innen)
 % ---------------------------------------------------
@@ -154,7 +141,7 @@
 % Automatische Ueberschrift in \listoffigures und \listoftables deaktivieren
 \usepackage{etoolbox}
 
-% 
+%
 \usepackage{amsmath}
 
 % Verhindere doppelte TOC-Einträge durch \listoffigures / \listoftables
@@ -237,121 +224,3 @@
     \fontsize{\frontmetafontsize}{1.2\frontmetafontsize}\selectfont \studyprogram%
   }%
 }
-
-
-% -------------------------------
-% Titelblatt und Inhaltsverzeichnis
-% -------------------------------
-
-\begin{document}
-\begin{titlepage}
-  % Hintergrundbild (zentriert, skaliert)
-  \frontpageimg[0.75]{300,427}{titelbild_michele_epg.png}  % [scale]{links,oben}{bild}
-
-  % Textblock
-  \begingroup
-    \vspace*{18cm}
-    \begin{flushleft}
-      \textcolor{fronttitlecolor}{%
-        \fontsize{\fronttitlefontsize}{1.2\fronttitlefontsize}\selectfont \textbf{\titletext}}\\[0.5cm]
-
-      \textcolor{frontsubtitlecolor}{%
-        \fontsize{\frontsubtitlefontsize}{1.2\frontsubtitlefontsize}\selectfont \MakeUppercase{\subtitletext}}\\[0.2cm]
-
-      \textcolor{frontauthorcolor}{%
-        \fontsize{\frontauthorfontsize}{1.2\frontauthorfontsize}\selectfont \MakeUppercase{\authorname}}%
-    \end{flushleft}
-
-    \vspace{2.5cm}
-
-    \noindent
-    \makebox[\textwidth]{%
-      \begin{minipage}[t]{0.5\textwidth}
-        \raggedright
-        \textcolor{frontmetacolor}{%
-          \fontsize{\frontmetafontsize}{1.2\frontmetafontsize}\selectfont \instituteinfo, \classinfo}%
-      \end{minipage}%
-      \begin{minipage}[t]{0.5\textwidth}
-        \raggedleft
-        \textcolor{frontmetacolor}{%
-          \fontsize{\frontmetafontsize}{1.2\frontmetafontsize}\selectfont \studyprogram}%
-      \end{minipage}%
-    }%
-  \endgroup
-\end{titlepage}
-
-\cleardoublepage
-\tableofcontents
-
-\cleardoublepage
-% -------------------------------
-%     Inhalt des Dokumentes
-% -------------------------------
-
-\input{einfuhrung}
-
-\include{grundstruktur}
-
-\input{crashkurs}
-
-\section{APA-Zitation und Quellenverzeichnis}
-\subsection{Einrichtung mit \texttt{biblatex} und \texttt{biber}}
-\subsection{Quellen einbinden mit \texttt{.bib}-Datei}
-\subsection{Zitieren im Text mit \texttt{\textbackslash parencite}}
-\subsection{Automatisches Literaturverzeichnis einfügen}
-
-\section{Overleaf - Wie nutze ich das Tool?}
-
-\section{KI Modelle und ihre Wasserzeichen}
-
-\section{Export nach Word (MS Word Abgabe) – der Workaround}
-\subsection{Export aus Overleaf als PDF}
-\subsection{PDF in Word öffnen (z.B. in Word 2021 oder 365)}
-\subsection{Speichern als \texttt{.docx} für Abgabe}
-\subsection*{Hinweis}
-Dies ist ein rein technischer Workaround für Schulen, die Word verlangen. Inhaltlich sollte mit PDF gearbeitet werden.
-
-
-
-% -------------------------------
-%             Anhang
-% -------------------------------
-\cleardoublepage
-\section{Anhang}
-
-\begin{itemize}
-  \item 
-\end{itemize}
-
-% -------------------------------
-%      Quellenverzeichnis
-% -------------------------------
-\cleardoublepage
-\section{Quellenverzeichnis}
-
-\printbibliography[heading=none]
-
-\vspace{1cm}
-
-\subsection{Einsatz von KI-basierten Tools}
-\begin{itemize}
-  \item ChatGPT (OpenAI, Version 4, Zugriff: 03.05.2025): zur Ideenstrukturierung und sprachlichen Überarbeitung.
-  \item DeepL (Zugriff: 03.05.2025): zur Übersetzung von Begriffen.
-  \item Quillbot: nicht verwendet.
-\end{itemize}
-
-% -------------------------------
-%      Abbildungsverzeichnis
-% -------------------------------
-\cleardoublepage
-\section{Abbildungsverzeichnis}
-\listoffigures
-
-% -------------------------------
-%      Tabellenverzeichnis
-% -------------------------------
-\cleardoublepage
-\section{Tabellenverzeichnis}
-\listoftables
-
-\end{document}

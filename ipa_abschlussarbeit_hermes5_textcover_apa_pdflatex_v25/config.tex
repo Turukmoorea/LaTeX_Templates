@@ -1,0 +1,226 @@
+% ---------------------------------------------------
+%         BASISKONFIGURATION (für Nutzer:innen)
+% ---------------------------------------------------
+
+% Dokumentklasse: 'article' ist ideal für Berichte und Facharbeiten.
+% 11pt setzt die Schriftgrösse, A4 das Papierformat.
+\documentclass[11pt,a4paper]{article}
+
+% Eingabe in UTF-8 (damit ä, ö, ü direkt im Quelltext verwendet werden können)
+\usepackage[utf8]{inputenc}
+
+% T1-Font-Encoding verbessert Silbentrennung bei Umlauten
+\usepackage[T1]{fontenc}
+
+% Spracheinstellungen für Deutsch (inkl. Silbentrennung, Anführungszeichen etc.)
+\usepackage[ngerman]{babel}
+
+% Schriftart: Helvetica (Arial ist mit pdfLaTeX nicht möglich)
+\usepackage[scaled]{helvet}
+\renewcommand{\familydefault}{\sfdefault} % Sans Serif (hier Helvetica) als Standardschrift
+
+% Zeilenabstand auf 1 setzen (erlaubter Bereich: 1.0–1.15)
+\usepackage{setspace}
+\setstretch{1}
+
+% Keine Einrückung bei neuen Absätzen
+\setlength{\parindent}{0pt}
+
+% Kleiner Abstand zwischen Absätzen
+\setlength{\parskip}{0.5em}
+
+% Linksbündiger Flattersatz, aber mit aktiver Silbentrennung
+\raggedright
+
+% Basiswert für Mindestzeilen bei Kapitelbeginn (z. B. für \section)
+\newcommand{\minspaceforsection}{5\baselineskip}
+
+% Seitenränder: oben/unten/rechts = 2.5 cm, links = 3 cm für Spiralbindung
+\usepackage{geometry}
+\geometry{
+  top=2.5cm,
+  bottom=2.5cm,
+  left=3cm,
+  right=2.5cm
+}
+
+% Ermöglicht benutzerdefinierte Schriftfarben
+\usepackage{xcolor}
+
+% Farbcodes für Titelseite (bei Bedarf anpassen)
+\definecolor{fronttitlecolor}{HTML}{0e2841}
+\definecolor{frontsubtitlecolor}{HTML}{319a8e}
+\definecolor{frontauthorcolor}{HTML}{808080}
+\definecolor{frontmetacolor}{HTML}{e97132}
+
+% Schriftgrössen für Titelseite (bei Bedarf anpassen)
+\newcommand{\fronttitlefontsize}{20}
+\newcommand{\frontsubtitlefontsize}{14}
+\newcommand{\frontauthorfontsize}{11}
+\newcommand{\frontmetafontsize}{10}
+
+% Farbe für Kopf- und Fusszeile
+\definecolor{pagestylegray}{HTML}{808080}
+
+% Schriftgrösse für Kopf-/Fusszeile
+\newcommand{\pageheaderfooterfontsize}{11}
+
+% Kopfzeile (ohne Linie = 0pt / mit Linie = bspw. 0.4pt)
+\newcommand{\headrulethickness}{0.4pt}
+
+% Fusszeile (ohne Linie = 0pt / mit Linie = bspw. 0.4pt)
+\newcommand{\footrulethickness}{0.4pt}
+
+% ---------------------------------------------------
+%     KONFIGURATION FÜR FORTGESCHRITTENE
+% ---------------------------------------------------
+
+% Automatisch Links generieren
+\usepackage{hyperref}
+
+% Automatischer Seitenumbruch: Kapitel beginnt nur, wenn genug Platz
+\usepackage{needspace}
+\usepackage{etoolbox} % erlaubt Patchen von bestehenden Befehlen
+
+\usepackage{multicol}
+
+% Vor jeder \section automatisch Platz für mindestens \minspaceforsection reservieren
+\pretocmd{\section}{\Needspace{\minspaceforsection}}{}{}
+
+% Kontrolle über Listen (Abstände, Symbole etc.)
+\usepackage{enumitem}
+
+% Damit Text durchgestrichen werden kann.
+\usepackage{ulem}
+
+% Bilder & Hintergrundbilder
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{atbegshi}
+\usepackage{float}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
+
+% Kopf- und Fusszeilen
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% Layout setzen: erst alles leeren
+\fancyhf{}
+
+\renewcommand{\headrulewidth}{\headrulethickness}
+\renewcommand{\footrulewidth}{\footrulethickness}
+
+% Kopfzeile links: \titletext
+\fancyhead[L]{%
+  \textcolor{pagestylegray}{\fontsize{\pageheaderfooterfontsize}{1.2\pageheaderfooterfontsize}\selectfont \titletext}
+}
+
+% Kopfzeile rechts: \classinfo
+\fancyhead[R]{%
+  \textcolor{pagestylegray}{\fontsize{\pageheaderfooterfontsize}{1.2\pageheaderfooterfontsize}\selectfont \classinfo}
+}
+
+% Fusszeile links: \authorname
+\fancyfoot[L]{%
+  \textcolor{pagestylegray}{\fontsize{\pageheaderfooterfontsize}{1.2\pageheaderfooterfontsize}\selectfont \authorname}
+}
+
+% Fusszeile rechts: Seitenzahl / Gesamtseitenzahl
+\fancyfoot[R]{%
+  \textcolor{pagestylegray}{\fontsize{\pageheaderfooterfontsize}{1.2\pageheaderfooterfontsize}\selectfont Seite \thepage{} / \pageref{LastPage}}
+}
+
+% Für Gesamtseitenzahl:
+\usepackage{lastpage}
+
+% Quellenverzeichnis nach APA
+\usepackage[backend=biber, style=apa, sorting=nyt]{biblatex}
+\addbibresource{quellenverzeichnis.bib} % deine .bib-Datei mit den Quellen
+
+% Automatische Ueberschrift in \listoffigures und \listoftables deaktivieren
+\usepackage{etoolbox}
+
+%
+\usepackage{amsmath}
+
+% Verhindere doppelte TOC-Einträge durch \listoffigures / \listoftables
+\makeatletter
+\patchcmd{\listoffigures}
+  {\addcontentsline{toc}{section}{\listfigurename}}
+  {}{}{}
+
+\patchcmd{\listoftables}
+  {\addcontentsline{toc}{section}{\listtablename}}
+  {}{}{}
+\makeatother
+
+\makeatletter
+\renewcommand{\listoffigures}{%
+  \begingroup
+    \@starttoc{lof}%
+  \endgroup
+}
+\renewcommand{\listoftables}{%
+  \begingroup
+    \@starttoc{lot}%
+  \endgroup
+}
+\makeatother
+
+% ---------------------------------------------------
+%        TITELSEITEN-LAYOUT UND BEFEHLE
+% ---------------------------------------------------
+
+% Titelbild zentriert einfügen: \frontpageimg[<scale>]{x,y}{bild}
+\newcommand{\frontpageimg}[3][1]{%
+  \AddToShipoutPicture*{%
+    \put(#2){%
+      \makebox(0,0){%
+        \includegraphics[scale=#1]{#3}%
+      }%
+    }%
+  }%
+}
+
+% Titel
+\newcommand{\fronttitle}{%
+  \textcolor{fronttitlecolor}{%
+    \fontsize{\fronttitlefontsize}{1.2\fronttitlefontsize}\selectfont \textbf{\titletext}%
+  }%
+}
+
+% Untertitel
+\newcommand{\frontsubtitle}{%
+  \textcolor{frontsubtitlecolor}{%
+    \fontsize{\frontsubtitlefontsize}{1.2\frontsubtitlefontsize}\selectfont \subtitletext%
+  }%
+}
+
+% Autor:in
+\newcommand{\frontauthor}{%
+  \textcolor{frontauthorcolor}{%
+    \fontsize{\frontauthorfontsize}{1.2\frontauthorfontsize}\selectfont \authorname%
+  }%
+}
+
+% Institut
+\newcommand{\frontinstituteinfo}{%
+  \textcolor{frontmetacolor}{%
+    \fontsize{\frontmetafontsize}{1.2\frontmetafontsize}\selectfont \instituteinfo%
+  }%
+}
+
+% Klasse
+\newcommand{\frontclassinfo}{%
+  \textcolor{frontmetacolor}{%
+    \fontsize{\frontmetafontsize}{1.2\frontmetafontsize}\selectfont \classinfo%
+  }%
+}
+
+% Studienprogramm / Jahr
+\newcommand{\frontstudyprogram}{%
+  \textcolor{frontmetacolor}{%
+    \fontsize{\frontmetafontsize}{1.2\frontmetafontsize}\selectfont \studyprogram%
+  }%
+}
