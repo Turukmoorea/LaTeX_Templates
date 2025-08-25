@@ -1,3 +1,15 @@
+% Diese Konfiguration ist nur mit pdfLaTeX-Compiler kompatibel.
+% ---------------------------------------------------
+%     DOKUMENTMETADATEN (anpassbar durch Nutzer:in)
+% ---------------------------------------------------
+
+\newcommand{\titletext}{Upgrade eines IPV4-Netzwerks auf Dualstack}
+\newcommand{\subtitletext}{IPA 2026}
+\newcommand{\authorname}{}
+\newcommand{\classinfo}{}
+\newcommand{\instituteinfo}{}
+\newcommand{\studyprogram}{}
+
 % ---------------------------------------------------
 %         BASISKONFIGURATION (für Nutzer:innen)
 % ---------------------------------------------------
@@ -136,7 +148,7 @@
 
 % Quellenverzeichnis nach APA
 \usepackage[backend=biber, style=apa, sorting=nyt]{biblatex}
-\addbibresource{quellenverzeichnis.bib} % deine .bib-Datei mit den Quellen
+\addbibresource{sources/quellen.lib} % deine .bib-Datei mit den Quellen
 
 % Automatische Ueberschrift in \listoffigures und \listoftables deaktivieren
 \usepackage{etoolbox}
@@ -224,3 +236,75 @@
     \fontsize{\frontmetafontsize}{1.2\frontmetafontsize}\selectfont \studyprogram%
   }%
 }
+
+% -------------------------------
+% Titelblatt und Inhaltsverzeichnis
+% -------------------------------
+
+\begin{document}
+\begin{titlepage}
+  % Hintergrundbild (zentriert, skaliert)
+  % \frontpageimg[0.75]{300,427}{titelbild_michele_epg.png}  % [scale]{links,oben}{bild}
+
+  % Textblock
+  \begingroup
+    \vspace*{18cm}
+    \begin{flushleft}
+      \textcolor{fronttitlecolor}{%
+        \fontsize{\fronttitlefontsize}{1.2\fronttitlefontsize}\selectfont \textbf{\titletext}}\\[0.5cm]
+
+      \textcolor{frontsubtitlecolor}{%
+        \fontsize{\frontsubtitlefontsize}{1.2\frontsubtitlefontsize}\selectfont \MakeUppercase{\subtitletext}}\\[0.2cm]
+
+      \textcolor{frontauthorcolor}{%
+        \fontsize{\frontauthorfontsize}{1.2\frontauthorfontsize}\selectfont \MakeUppercase{\authorname}}%
+    \end{flushleft}
+
+    \vspace{2.5cm}
+
+    \noindent
+    \makebox[\textwidth]{%
+      \begin{minipage}[t]{0.5\textwidth}
+        \raggedright
+        \textcolor{frontmetacolor}{%
+          \fontsize{\frontmetafontsize}{1.2\frontmetafontsize}\selectfont \instituteinfo, \classinfo}%
+      \end{minipage}%
+      \begin{minipage}[t]{0.5\textwidth}
+        \raggedleft
+        \textcolor{frontmetacolor}{%
+          \fontsize{\frontmetafontsize}{1.2\frontmetafontsize}\selectfont \studyprogram}%
+      \end{minipage}%
+    }%
+  \endgroup
+\end{titlepage}
+
+\include{journal/aenderungsprotokoll}
+\cleardoublepage
+\tableofcontents
+
+\cleardoublepage
+% -------------------------------
+%     Inhalt des Dokumentes
+% -------------------------------
+
+
+
+
+
+% -------------------------------
+%             Anhang
+% -------------------------------
+\cleardoublepage
+\section{Anhang}
+
+\begin{itemize}
+  \item 
+\end{itemize}
+
+% -------------------------------
+%      Quellenverzeichnis
+% -------------------------------
+
+\include{sources/quellcontent}
+
+\end{document}
